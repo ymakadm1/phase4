@@ -1,0 +1,33 @@
+<h1 class="#3f51b5 indigo-text">Employees</h1>
+
+<table class="striped"> 
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Ssn</th>
+      <th>Date of birth</th>
+      <th>Phone</th>
+      <th>Role</th>
+      <th>Active</th>
+       <th></th>
+    <th></th>
+  </tr>
+
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= link_to employee.first_name, employee_path(employee) %></td>
+        <td><%= employee.last_name %></td>
+        <td><%= employee.ssn %></td>
+        <td><%= employee.date_of_birth %></td>
+        <td><%= employee.phone %></td>
+        <td><%= employee.role %></td>
+        <td><%= employee.active %></td>
+
+        <td><%= link_to 'Edit', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %></td>
+    <td><%= link_to 'Destroy', employee,  confirm: 'Are you sure?', method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+      </tr>
+    <% end %>
+</table>
+
+<!-- Button for Link -->
+<td><%= link_to 'New Employee', new_employee_path, :class=> "waves-effect waves-light btn-large"%></td>

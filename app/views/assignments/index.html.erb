@@ -1,0 +1,28 @@
+<h1 class="#3f51b5 indigo-text">Assignments</h1>
+
+<table class="striped"> 
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+		<th>Pay Level</th>
+    <th>Employee Name</th>
+    <th>Store Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @assignments.each do |assignment| %>
+  <tr>
+    <td><%= link_to assignment.start_date, assignment_path(assignment) %></td>
+    <td><%= assignment.end_date.year %></td>
+    <td><%= assignment.pay_level %></td>
+		<td><%= assignment.employee.first_name %></td>
+		<td><%= assignment.store.name %></td>
+    <td><%= link_to 'Edit', edit_assignment_path(assignment), :class=> "waves-effect waves-light btn light-blue" %></td>
+    <td><%= link_to 'Destroy', assignment,  confirm: 'Are you sure?', method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<td><%= link_to 'New Assignment', new_assignment_path, :class=> "waves-effect waves-light btn-large"%></td>
