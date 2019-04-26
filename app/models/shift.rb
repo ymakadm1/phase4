@@ -18,16 +18,16 @@ class Shift < ApplicationRecord
     
     #Scopes
     scope :completed,     -> { joins(:shift_jobs) }
-    scope :incomplete,   -> { joins("LEFT JOIN shift_jobs ON shift_id")}
+    scope :incomplete,   -> { joins(:shift_jobs).where("job_id IS NULL")}
     scope :for_store,     -> (store_id) { joins(:assignment).where("store_id = ?", store_id) }
     scope :for_employee,  -> (employee_id) { joins(:assignment).where("employee_id = ?", employee_id) }
     scope :past,          -> { where("date < ?", Date.current) }
     scope :upcoming,      -> { where("date >= ?", Date.current) }
     scope :for_next_days, -> (next_days) { where("date between ? and ?", Date.current, Date.current + next_days) }
     scope :for_past_days, -> (past_days) { where("date between ? and ?", Date.current - past_days, Date.current - 1) }
+    scope :chronological, -> { order('date ASC') }
     scope :by_store,      -> { joins(:store).order("stores.name") }
     scope :by_employee,   -> { joins(:employee).order("employees.last_name, employees.first_name") }
-    scope :chronological, -> { order('date ASC') }
     
     
     def completed?
