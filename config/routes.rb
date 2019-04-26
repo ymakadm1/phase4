@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :demos
   resources :users
   resources :store_flavors
   resources :flavors
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
  # Semi-static page routes
-  get 'home' => 'index#home', as: :home
+  get 'home' => 'index#homepage', as: :home
   get 'about' => 'index#about', as: :about
   get 'contact' => 'index#contact', as: :contact
   get 'privacy' => 'index#privacy', as: :privacy
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
   get 'inactive' => 'stores#inactive', as: :inactive_stores
   
   # Setting the root
-  root :to => 'index#homepage', as: :homepage
+  root  'index#homepage'
 
 
 end

@@ -54,19 +54,21 @@
 		    <%= f.select :active, [['Yes', true], ['No', false]]  %>
 			</div>
 			
-				<br>
-				<div class="field">
-						
-		    <%= f.label :email %>
-		    <%= f.text_field :email, id: :user_email %>
-		  	</div>
-
-			  	<div class="field">
-			    <%= f.label :password %>
-			    <%= f.text_field :password, id: :user_password %>
-			 		</div>
 	
-				
+			
+
+			<div class="input-field">
+				<%= f.fields_for :user do |f|%>
+		    <%= f.label "Email" %>
+		    <%= f.text_field :email %>
+		    </div>
+		    <div class="input-field">
+		    <%= f.label "Password" %>
+		    <%= f.password_field :password %>
+		    </div>
+		  	<% end %>
+		  	
+		  	
 			  <div class="actions">
 			  <%= f.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
 			  <%= link_to 'Cancel', employees_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>

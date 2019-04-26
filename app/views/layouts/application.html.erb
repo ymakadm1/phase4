@@ -55,12 +55,13 @@
 </div>
 <% end %> 
 
-<% if current_user=nil %>
+<% if current_user==nil %>
 <nav>
 <div class="nav-wrapper, f44336 red">
 &nbsp&nbsp
 </div>
 </nav>
+
 <% end %> 
 
 </nav>
@@ -73,8 +74,9 @@
 
 <!-- SIDEBAR CONTENT GOES HERE -->
 <!-- <%= render partial: 'partials/quick_links' %> -->
-
+<
 </div>
+  <% if logged_in? %>
 <footer>
 <div class="row center">
 
@@ -82,6 +84,7 @@
 
 </div>
 </footer>
+<% end %>
 </body>
 <%= javascript_include_tag "application" %>
 <% flash.each do |message_type, message| %>
