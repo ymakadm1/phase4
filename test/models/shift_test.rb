@@ -68,23 +68,23 @@ end
     end
     
       should "not allow shift to be added to past assignment" do
-      @teststore3=FactoryBot.create(:store)
-      @testemployee3=FactoryBot.create(:employee)
-      @testassignment3= FactoryBot.create(:assignment, store: @teststore3, employee: @testemployee3, start_date: 4.months.ago.to_date, end_date: 2.months.ago.to_date)
-      assert_raise(Exception) {FactoryBot.create(:shift, assignment: @testassignment3, date: Date.today - 100.days)}
-      @testassignment3.destroy
-      @testemployee3.destroy
-      @teststore3.destroy
+      @oakland=FactoryBot.create(:store)
+      @cindy=FactoryBot.create(:employee)
+      @assign_cindy= FactoryBot.create(:assignment, store: @oakland, employee: @cindy, start_date: 4.months.ago.to_date, end_date: 2.months.ago.to_date)
+      assert_raise(Exception) {FactoryBot.create(:shift, assignment: @assign_cindy, date: Date.today - 100.days)}
+      @oakland.destroy
+      @cindy.destroy
+      @assign_cindy.destroy
     end
 
       should "allow shift to be added to upcoming assignment" do
-      @teststore1=FactoryBot.create(:store)
-      @testemployee1=FactoryBot.create(:employee)
-      @testassignment1= FactoryBot.create(:assignment, store: @teststore1, employee: @testemployee1, start_date: 4.months.ago.to_date, end_date: 6.months.from_now.to_date)
-      assert_raise(Exception) {FactoryBot.create(:shift, assignment: @testassignment1, date: Date.today + 100.days)}
-      @testassignment1.destroy
-      @testemployee1.destroy
-      @teststore1.destroy
+      @oakland=FactoryBot.create(:store)
+      @cindy=FactoryBot.create(:employee)
+      @assign_cindy= FactoryBot.create(:assignment, store: @oakland, employee: @cindy, start_date: 4.months.from_now.to_date, end_date: 6.months.from_now.to_date)
+      assert_raise(Exception) {FactoryBot.create(:shift, assignment: @assign_cindy, date: Date.today + 100.days)}
+      @oakland.destroy
+      @cindy.destroy
+      @assign_cindy.destroy
     end
     
     should "have all the shifts listed chronologically by start date" do
