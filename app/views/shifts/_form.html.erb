@@ -1,0 +1,52 @@
+<%= form_with(model: shift, local: true) do |f| %>
+  <% if @shift.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
+
+      <ul>
+      <% @shift.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!-- Table for input fields with appropriate field type -->
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr valign="top">
+			<td>
+				<h4 class="f44336 red-text">Shift Details:</h4>
+  <div class="input-field">
+    <%= f.label :assignment_id %>
+    <%= f.number_field :assignment_id %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :date %>
+    <%= f.text_field :date, prompt: "Date", class: "datepicker", :value => (f.object.date.strftime('%B %d, %Y') if f.object.date != nil)%>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :start_time %>
+    <%= f.time_select :start_time %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :end_time %>
+    <%= f.time_select :end_time %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  
+  
+  <div class="actions">
+			  <%= f.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+			  <%= link_to 'Cancel', shifts_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>
+			  </div>
+			</td>
+		</tr>
+	</table>
+<% end %>

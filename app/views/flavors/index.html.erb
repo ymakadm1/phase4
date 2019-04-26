@@ -1,0 +1,22 @@
+<h1 class="#3f51b5 indigo-text">Flavors</h1>
+
+<table class="striped"> 
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+       <th></th>
+    <th></th>
+    </tr>
+
+    <% @flavors.each do |flavor| %>
+      <tr>
+        <td><%= link_to flavor.name, flavor_path(flavor) %></td>
+        <td><%= flavor.active %></td>
+          <td><%= link_to 'Edit', edit_flavor_path(flavor), :class=> "waves-effect waves-light btn light-blue" %></td>
+    <td><%= link_to 'Destroy', flavor,  confirm: 'Are you sure?', method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+      </tr>
+    <% end %>
+</table>
+
+<!-- Button for Link -->
+<td><%= link_to 'New flavor', new_flavor_path, :class=> "waves-effect waves-light btn-large"%></td>

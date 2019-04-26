@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homepage>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    
+
+<div class="row">
+<div class="col s12 center">
+<!-- MAIN CONTENT GOES HERE -->
+
+<div class="container col s12">
+    <div class="row">
+        <div class="row">                            
+            <h1 class= "f#3f51b5 indigo-text">Welcome To A &amp; M Creamery</h1>
+                <div class="row">
+                    <div class="container col s12">
+                      	<p>
+			
+			<br></br>
+			Please use your login credentials to enter the website.
+			<br></br>
+		</p>
+                </div>
+        <!-- Page Content goes here -->
+        <%= form_for(:demo, url: demos_path) do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    
+    <%= f.submit "Login" %>
+<% end %>
+       
+    </div>
+</div>
+</div>
+</div>  
+<%= yield %>
+</div>
+
+
+<!-- SIDEBAR CONTENT GOES HERE -->
+<!-- <%= render partial: 'partials/quick_links' %> -->
+
+</div>
+<footer>
+<div class="row center">
+
+ <%= render partial: 'partials/footer' %>
+
+</div>
+</footer>
+</body>
+<%= javascript_include_tag "application" %>
+<% flash.each do |message_type, message| %>
+<%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+<% end %>
+</html>

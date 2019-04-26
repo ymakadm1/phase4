@@ -1,0 +1,28 @@
+<h1 class="#3f51b5 indigo-text">Shifts</h1>
+
+<table class="striped"> 
+    <tr>
+      <th>Assignment</th>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Notes</th>
+       <th></th>
+    <th></th>
+    </tr>
+
+    <% @shifts.each do |shift| %>
+      <tr>
+        <td><%= link_to shift.name, shift_path(shift) %></td>
+        <td><%= shift.date %></td>
+        <td><%= shift.start_time %></td>
+        <td><%= shift.end_time %></td>
+        <td><%= shift.notes %></td>
+          <td><%= link_to 'Edit', edit_shift_path(shift), :class=> "waves-effect waves-light btn light-blue" %></td>
+    <td><%= link_to 'Destroy', shift,  confirm: 'Are you sure?', method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+      </tr>
+    <% end %>
+</table>
+
+<!-- Button for Link -->
+<td><%= link_to 'New shift', new_shift_path, :class=> "waves-effect waves-light btn-large"%></td>

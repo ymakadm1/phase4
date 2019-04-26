@@ -1,8 +1,15 @@
-<p>
 
-</p>
-<div classid="copyright">
-  <br />Webmaster: <%= mail_to "ymakadm1@qatar.cmu.edu", "Yahya Al-Makadma", :encode => "javascript" %>
-    &nbsp;&nbsp;Copyright 2019
-  <br /><br />
-</div>
+<footer>
+
+	<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+  <%= link_to 'About the Creamery', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+	<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+	<%= link_to 'Privacy Policy', privacy_path %>
+	<br /><br />
+	
+	<div id="copyright">
+		Webmaster: <%= mail_to("ymakadm1@qatar.cmu.edu", "Yahya Al-Makadma", encode: "javascript") %> 
+		&nbsp;&nbsp;& Copyright 2019
+	</div>
+
+</footer>

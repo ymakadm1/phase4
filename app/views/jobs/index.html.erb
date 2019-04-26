@@ -1,0 +1,25 @@
+<h1 class="#3f51b5 indigo-text">Jobs</h1>
+
+<table class="striped"> 
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active</th>
+       <th></th>
+    <th></th>
+  </tr>
+
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= link_to job.name, job_path(job) %></td>
+        <td><%= job.description %></td>
+        <td><%= job.active %></td>
+
+        <td><%= link_to 'Edit', edit_job_path(job), :class=> "waves-effect waves-light btn light-blue" %></td>
+    <td><%= link_to 'Destroy', job,  confirm: 'Are you sure?', method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+      </tr>
+    <% end %>
+</table>
+
+<!-- Button for Link -->
+<td><%= link_to 'New job', new_job_path, :class=> "waves-effect waves-light btn-large"%></td>

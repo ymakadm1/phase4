@@ -1,10 +1,17 @@
 class Store < ApplicationRecord
 # Callbacks
   before_save :reformat_phone
+  before_destroy :destroyed_not
+  after_rollback :inactive_store
+  
   
   # Relationships
   has_many :assignments
   has_many :employees, through: :assignments  
+  has_many :store_flavors
+  has_many :flavors, through: :store_flavors
+  has_many :shifts, through: :assignments
+  
   
   # Validations
   # make sure required fields are present
@@ -23,6 +30,16 @@ class Store < ApplicationRecord
   scope :active,       -> { where(active: true) }
   scope :inactive,     -> { where(active: false) }
   
+  
+  
+    def destroyed_not
+        self.errors.add(:base, "Cannot Delete")
+      throw(:abort)
+    end
+    
+    def inactive_store
+        self.update_attribute(:active, false)
+    end
   
   # Misc Constants
   STATES_LIST = [['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]

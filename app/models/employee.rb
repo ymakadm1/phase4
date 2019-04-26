@@ -4,8 +4,12 @@ class Employee < ApplicationRecord
   before_validation :reformat_ssn
   
   # Relationships
+  
+  has_one :user
   has_many :assignments
   has_many :stores, through: :assignments
+  has_many :jobs, through: :shifts
+  accepts_nested_attributes_for :user, reject_if: lambda { |user| user[:email].blank? }, allow_destroy: true
   
   # Validations
   validates_presence_of :first_name, :last_name, :date_of_birth, :ssn, :role
